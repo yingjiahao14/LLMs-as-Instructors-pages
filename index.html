@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="static/ico/favicon.ico" rel="icon" type="image/x-ico" />
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://fastly.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    crossorigin="anonymous">
+  <script src="https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+  <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script>
+    function toggleVisibility(id) {
+        var element = document.getElementById(id);
+        if (element.style.display === 'none') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+    </script>
+<style>
+  .container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    width: 100%; /* Adjust based on your layout needs */
+    margin-bottom: 20px; /* Space between cards */
+}
+
+
+.arrow {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px; /* Control the space between the cards */
+    font-size: 24px; /* Size of the arrow */
+    font-weight: bold; /* Make the arrow bold */
+    color: #007BFF; /* Arrow color */
+  }
+
+.card-body, .list-group-item {
+    text-align: left;
+}
+
+</style>
+<style>
+  .image-container {
+      display: flex;        
+      justify-content: center; 
+      align-items: center; 
+  }
+  
+  .responsive-image {
+      max-width: 50%;     
+      height: auto;        
+      margin: 5px;         
+  }
+  </style>
+  
+  <style>
+    .navbar {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: .25rem;
+      padding-bottom: .25rem;
+    }
+
+    .navbar-expand-md .navbar-collapse {
+      display: flex !important;
+      flex-basis: auto;
+    }
+
+    .navbar {
+      align-items: stretch;
+      min-height: 3.5rem;
+      background: 0 0;
+      color: rgba(35, 46, 60, .7);
+    }
+
+    .navbar-light {
+      box-shadow: inset 0 -1px 0 0 rgba(101, 109, 119, .16);
+      background-color: #fff;
+    }
+
+    .navbar-collapse .navbar {
+      flex-grow: 1;
+    }
+    .page-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .component-fade-enter-active,
+    .component-fade-leave-active {
+      transition: opacity .3s ease;
+    }
+
+    .component-fade-enter,
+    .component-fade-leave-to
+
+    /* .component-fade-leave-active for below version 2.1.8 */
+      {
+      opacity: 0;
+    }
+
+    .slide-fade-enter-active {
+      transition: all .5s ease;
+    }
+
+    .slide-fade-leave-active {
+      transition: all .5s ease;
+    }
+
+    .slide-fade-enter,
+    .slide-fade-leave-to
+
+    /* .slide-fade-leave-active for below version 2.1.8 */
+      {
+      transform: translateX(10px);
+      opacity: 0;
+    }
+    /* Class for tight group */
+    .group-item {
+      margin-bottom: 0;
+    }
+    .link-like {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    /* Additional spacing after every second item */
+    .group-item:nth-child(2n) {
+      margin-bottom: 3px; /* Adjust this value as needed for more spacing between groups */
+    }
+  </style>
+<style>
+  .btn {
+      border: none;
+      padding: 8px 16px; /* Smaller padding */
+      font-size: 14px; /* Smaller font size */
+      transition: all 0.3s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      border-radius: 5px; /* Rounded corners */
+      margin: 0 auto; /* Center the button */
+      display: block; /* Block-level for margin auto to work */
+  }
+  
+  .btn-light {
+      background-color: #e7e7e7; /* Light grey */
+      color: #555; /* Dark grey text */
+  }
+  
+  .btn-secondary {
+      background-color: #50596b; /* Dark grey */
+      color: white;
+  }
+  
+  .btn:hover, .btn:focus {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transform: translateY(-2px); /* Slight move up */
+  }
+  
+  .btn:active {
+      box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+      transform: translateY(1px); /* Slight move down when active */
+  }
+  </style>
+  
+  
+  
+  <title>Jiahao</title>
+</head>
+
+
+
+<body>
+  <script src="https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <div id="app">
+    <div class="wrapper">
+      <!-- <header class="navbar navbar-expand-md navbar-light d-print-none">
+        <div class="container-xl">
+          <a href="index.html">
+            ReLoad
+          </a>
+        </div>
+
+      </header> -->
+
+      <div class="navbar-expand-md">
+        <div class="collapse navbar-collapse" id="navbar-menu">
+          <div class="navbar">
+            <div class="container-xl">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                
+               
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="page-wrapper">
+        <div class="container-xl">
+          <transition name="component-fade" mode="out-in">
+            <component :is="nowname" :switchpartson="switchpart"></component>
+          </transition>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <template id="Overview">
+    <div>
+      <!-- <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">Check out our data!</h4>
+        <p style="margin-bottom: 0rem;">Click the data section to gain a comprehensive understanding of our benchmark.</p>
+        <button type="button" class="btn btn-warning" style="margin-top: 8px;" @click="switchpartson(2)">Go!</button>
+      </div> -->
+
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered">
+              <div class="column has-text-centered">
+                <h1 class="title is-1 publication-title">LLMs-as-Instructors: Learning from Errors Toward Automating Model Improvement</h1>
+                <div class="is-size-5 publication-authors">
+                  <!-- Paper authors -->
+                  <a href="mailto:jhying.2022@phdcs.smu.edu.sg">
+                    <span class="author-block">Jiahao Ying</a><sup>1, 2</sup>,</span>
+                    <span class="author-block">Mingbao Lin</a><sup>2</sup>,</span>
+                  <span class="author-block">Yixin Cao<sup>3&#8224</sup>,</span>
+                  <span class="author-block">Wei Tang<sup>4</sup>,</span>
+                  <span class="author-block">Bo Wang<sup>5</sup>,</span><br>
+                  <span class="author-block">Qianru Sun<sup>1</sup>,</span>
+                  <span class="author-block">Xuanjing Huang<sup>3</sup>,</span>
+                  <span class="author-block">Shuicheng Yan<sup>2&#8224</sup></span>
+            
+                </div>
+                <div class="is-size-5 publication-authors" style="margin-top: 5px;">
+                  <span class="author-block">
+                    <sup>1</sup>Singapore Management University &nbsp  <br>
+ 
+                    <sup>2</sup>Skywork AI <br>
+
+                    <sup>3</sup>Fudan University    <br>
+    
+                    <sup>4</sup>University of Science and Technology of China    <br>
+                 
+
+                    <sup>5</sup>Beijing Institute of Technology
+                   
+    
+                    <br>
+                    <br>
+                    <span class="link-block">
+                      <a href="" class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+                    <span class="link-block">
+                      <a href="https://github.com/SkyworkAI/LLMs-as-Instructors/invitations" class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fab fa-github"></i>
+                        </span>
+                        <span>Code</span>
+                      </a>
+                      <a href="" class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                            <i class="fas fa-cube"></i>
+                        </span>
+                        <span>Model</span>
+                      </a>
+                    </span>
+                    <!-- <a href="https://arxiv.org/abs/2402.11894">[Paper]</a>
+                    <a href="https://github.com/yingjiahao14/haopage">[Data]</a> -->
+                  </span>
+                  <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Abstract</h2>
+              <div class="content has-text-justified">
+                <p>
+                This paper introduces the innovative "LLMs-as-Instructors'' framework, which leverages the advanced Large Language Models (LLMs) to autonomously enhance the training of smaller target models. 
+                
+                Inspired by the theory of "Learning from Errors'', this framework employs an instructor LLM to meticulously analyze the specific errors within a target model, facilitating targeted and efficient training cycles.
+                
+    
+                 Within this framework, we implement two strategies: "Learning from Error," which focuses solely on incorrect responses to tailor training data, and "Learning from Error by Contrast,'' which uses contrastive learning to analyze both correct and incorrect responses for a deeper understanding of errors. 
+                </p>
+                 Our empirical studies, conducted with several open-source models, demonstrate significant improvements across multiple benchmarks, including mathematical reasoning, coding abilities, and factual knowledge. Notably, the refined Llama-3-8b-Instruction has outperformed ChatGPT, illustrating the effectiveness of our approach. By leveraging the strengths of both strategies, we have attained a more balanced performance improvement on both in-domain and out-of-domain benchmarks.
+                 Our code can be found at <a href="https://github.com/SkyworkAI/LLMs-as-Instructors/invitations">this GitHub link</a>.
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+
+              <h2 class="title is-3">LLMs-as-Instructors Framework</h2>
+              <div class="content has-text-justified">
+                <img src="static/images/main.png" class="d-block w-100" alt="..."style="margin-top: 30px; margin-bottom: 30px;">
+                <p>
+                    <li><strong>Data Selection</strong> is the initial step where we meticulously select target data samples designed to evaluate the capabilities we intend to enhance in subsequent iterations.
+                </p>
+
+                <p>
+                    <li><strong>Result Collection</strong> follows, where we scrutinize the performance of the target model and meticulously gather its responses for in-depth subsequent analysis.
+                </p>
+
+                <p>
+                    <li><strong>Instructor Analysis and Data Supply</strong> is the phase where the instructor, employing a predefined analytical strategy, dissects the errors made by the target model. This analysis is pivotal in formulating strategies for improvement and crafting tailored training corpora to facilitate the target model’s learning process.
+                </p>
+                <p>
+                    <li><strong>Target Model Training and Evaluation</strong> concludes the cycle, where the target model undergoes fine-tuning with the supplemented training corpus. It is then evaluated to measure the extent of improvement using a dedicated evaluation dataset.
+                </p>
+                
+                
+              </div> 
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+      
+      <section class="section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">How effective is the LLMs-as-Instructors framework for LLMs improvement?</h2>
+              <div class="content has-text-justified">
+                <p>
+                    Utilizing GPT-4-preview as the instructor, we have successfully enhanced both the Mistral-7b-Instruct and Llama-3-8b-Instruction models, employing two distinct analysis strategies. 
+                    The two models realize significant enhancements on both ID and OOD benchmarks, irrespective of the strategy employed.
+                </p>  
+                <p>
+                    In comparison with open-source models of similar or even larger scale, such as Gemma-7B-Instruct, Llama-2-70b-Chat, and Mixtral-8x7B-Instruct, the refined Mistral-7b-Instruct demonstrates a clear superiority, particularly in coding, mathematical reasoning, and overall general reasoning. Both strategies surpass these models by an average of 14%. Moreover, the refined Llama-3-8b-Instruction surpasses the performance of ChatGPT by 0.7% averagely, achieving state-of-the-art results as shown in the table. Considering that the performance of Llama-3-8b-Instruction is already high, the fact that our framework could further enhance it underscores the effectiveness of our approach.
+        
+                    <img src="static/images/result.png" class="d-block w-100" alt="..."
+                    style="margin-top: 30px; margin-bottom: 30px;">
+        
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Impact of Iterations and Difference Strategies on
+                Improvement</h2>
+              <div class="content has-text-justified">
+                <p>
+                Through three successive training iterations of Mistral-7b-Instruct, we find that under both strategies,  the model consistently achieves either progressive improvement or sustains a performance level on par with the preceding iteration in each round. 
+                </p>
+                <img src="static/images/result_iteration.png" class="d-block w-100" alt="..."
+                style="margin-top: 30px; margin-bottom: 30px;">
+                <p>
+                    The applicability of the strategies  varies --- Learning from Error by Contrast is advantageous in scenarios with a rich set of question samples, while Learning from Errors is more effective for general questions.
+                    Also, OOD evaluations show an average 1.7% performance boost with contrastive pairs, indicating that it produces more generalizable data.
+                    Leveraging the unique strengths of both strategies, we undertake preliminary experiments to enhance the model's performance more evenly:
+                 </p>    
+                <img src="static/images/result_merge.png" class="d-block w-100" alt="..." style="width: 50%; max-width: 500px; height: auto; display: block; margin: 0 auto;">
+                
+
+
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+      <!--BibTex citation -->
+      <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content" style="width: 80%; margin: auto;">
+          <h2 class="title">BibTeX</h2>
+          <pre><code></code></pre>
+          <a href="https://www.flagcounter.me/details/dKe"><img src="https://www.flagcounter.me/dKe/" alt="Flag Counter"
+              hidden></a>
+        </div>
+      </section>
+
+    </div>
+  </template>
+
+  <template id="Sample">
+    <div>
+      <!-- {{ message }}
+      <div class="form-group">
+        <input type="text" class="form-control typeahead" placeholder="Type your search query" data-provide="typeahead">
+      </div> -->
+      <h1 style="margin-bottom: 15px;"> The updated data sample using the mimicking strategy </h1><br>
+
+
+      <div class="card-header bg-secondary text-white mb-3" style="background: linear-gradient(135deg, #6a82fb, #fc5c7d);">
+        <div class="card-body" style="padding-left: 0;">
+            <button type="button" class="btn btn-success" style="background-color: #28a745; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 8px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition-duration: 0.4s; cursor: pointer;"
+                    onmouseover="this.style.backgroundColor='#218838'"
+                    onmouseout="this.style.backgroundColor='#28a745'"
+                    @click="sample()">
+                Press the button to randomly select a new sample from the set.
+            </button>
+        </div>
+    </div>
+      <!-- <div class="card-header bg-secondary text-white mb-3">
+        <div class="card-body" style="padding-left: 0;">
+          <p class="card-text" style="margin-bottom: 0.5rem; text-align: left;">
+            Press the button to randomly select a sample from the dataset.
+          </p>
+          <button type="button" class="btn btn-success" style="margin-top: 10px;" @click="sample()">
+            Get Random Sample
+          </button>
+        </div>
+      </div> -->
+
+      <div class="accordion" id="accordionExample">
+        <div class="card" v-for="(qitem, qindex) in sampledData">
+          <div :id="'collapse'+qindex" :class="['collapse', nowqindex==qindex ? 'show' : '']"
+            :aria-labelledby="'heading'+qindex" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="container">
+                <div class="row" style="margin-bottom: 30px;">
+
+                  <div class="card">
+                    
+                    <div class="card-body" style="padding-top: 0.75rem; padding-bottom: 0.25rem;">
+                      <h5 class="card-title"><b>Original Question</b></h5>
+                      
+                  </div>
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                          <p> <strong>Question: </strong> {{sampledData[qindex]['question']}}</p>
+                          <p
+                          :style="expandedFollow[2] ? 'margin: 0px;' : 'display: -webkit-box; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin: 0px;'">
+                          <strong>Answer: &nbsp;</strong>{{sampledData[qindex]['answer']}}
+                        </p>
+                      </li>
+                  </ul>
+                </div>
+                <div class="arrow" style="width: 100%; display: flex; justify-content: center; align-items: center; margin: 20px;">
+                  <span style="font-size: 48px; color: #007BFF; font-weight: bold;">&#8595;</span> Mimicking<!-- Larger Unicode down arrow, bold -->
+               </div>
+              
+              
+              
+              <div class="card">
+                  <div class="card-body" style="padding-top: 0.75rem; padding-bottom: 0.25rem;">
+                    <h5 class="card-title"><b>Mimicked Question</b></h5>
+                    
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <p><strong>Question: </strong> {{sampledData[qindex]['followingQuestion']}}</p>
+                        <p> <strong>Answer: </strong> {{sampledData[qindex]['followingAnswer']}}</p>
+                    </li>
+                </ul>
+                </div>
+
+                  <div class="card" style="margin-top: 20px;">
+                    <div class="card-body" style="padding-top: 0.75rem; padding-bottom: 0.25rem;">
+                      <h5 class="card-title"><b>Answers from the selected LMs</b> (Click on answers below to show the full text)</h5> 
+                      <!-- <h6 style="color: darkblue;"> Click on answers below to show the full text! </h6> -->
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    </div> <br>
+                    
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col-3" v-for="(lm, index) in lmlist" :key="index" style="margin-bottom: 5px;">
+                        <button type="button"
+                          :class="{btn: true, 'btn-secondary': selected[index], 'btn-light': !selected[index]}"
+                          @click="selectcat(index)" style="width: 90%; margin: 0 auto; display: block;">{{lm}}</button>
+                      </div>
+                      <div class="col-3" style="margin-bottom: 5px;">
+                        <button type="button"
+                          :class="{btn: true, 'btn-secondary': !selected.includes(false), 'btn-light': selected.includes(false)}"
+                          @click="selectcat(-1)" style="width: 90%; margin: 0 auto; display: block;">Show All</button>
+                      </div>
+                    </div>
+                    <br>
+
+                      <ul class="list-group list-group-flush">
+                        <transition-group name="slide-fade">
+                          <li class="list-group-item" v-for="(lm, index) in lmlist" v-show="selected[index]" :key="'ans' + index" @click="setExpandOrCollapse(index)">
+                            <p :style="expanded[index] ? 'margin: 0px;' : 'display: -webkit-box; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin: 0px;'">
+                              <strong>{{lm}}:&nbsp;</strong>
+                              <span v-if="questiondata[index].data === 1" class="icon correct">✅</span>
+                              <span v-else class="icon incorrect">❌</span>
+                              {{ questiondata[index].text }}
+                            </p>
+                          </li>
+                        </transition-group>
+                      </ul>
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </template>
+
+  <template id="Extend">
+    <div>
+      <!-- {{ message }}
+      <div class="form-group">
+        <input type="text" class="form-control typeahead" placeholder="Type your search query" data-provide="typeahead">
+      </div> -->
+      <h1 style="margin-bottom: 15px;"> The updated data sample using the extending strategy </h1><br>
+
+      <div class="card-header bg-secondary text-white mb-3" style="background: linear-gradient(135deg, #6a82fb, #fc5c7d);">
+        <div class="card-body" style="padding-left: 0;">
+            <button type="button" class="btn btn-success" style="background-color: #28a745; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 8px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition-duration: 0.4s; cursor: pointer;"
+                    onmouseover="this.style.backgroundColor='#218838'"
+                    onmouseout="this.style.backgroundColor='#28a745'"
+                    @click="sample()">
+                Press the button to randomly select a new sample from the set.
+            </button>
+        </div>
+    </div>
+    
+
+      <div class="accordion" id="accordionExample">
+        <div class="card" v-for="(qitem, qindex) in sampledData">
+            
+          <div :id="'collapse'+qindex" :class="['collapse', nowqindex==qindex ? 'show' : '']"
+            :aria-labelledby="'heading'+qindex" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="card">
+                    
+                <div class="card-body" style="padding-top: 0.75rem; padding-bottom: 0.25rem;">
+                  <h5 class="card-title"><b>Original Question</b></h5>
+                  
+              </div>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                      <p> <strong>Question: </strong> {{sampledData[qindex]['question']}}</p>
+                  </li>
+              </ul>
+            </div>
+            <div class="arrow" style="width: 100%; display: flex; justify-content: center; align-items: center; margin: 20px;">
+              <span style="font-size: 48px; color: #007BFF; font-weight: bold;">&#8595;</span> Extending<!-- Larger Unicode down arrow, bold -->
+           </div><br>
+           <div class="card" style="margin-top: 20px;">
+            <div class="card-body" style="padding-top: 0.75rem; padding-bottom: 0.25rem;">
+              <h5 class="card-title"><b>Extended Question (Please Select one of the Cognitive levels)</b></h5>
+              <!-- <h6 style="color: darkblue;"> Click on answers below to show the full text! </h6> -->
+              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            </div> <br>
+              <div class="col-sm">
+                <div class="row">
+                  <div class="col-3" v-for="i in 4" :key="i">
+                    <button type="button"
+                      :class="{btn: true, 'btn-secondary': selectedQ === (i-1), 'btn-light': selectedQ !== (i-1)}"
+                      @click="selectQuestion(qindex, i-1)" style="font-size: medium; width: 100%;">{{sampledData[qindex]['fourQ'][i-1]['level']}}</button>
+                  </div>
+                </div><br>
+              </div><br>
+
+                    <ul class="list-group list-group-flush">
+                      <transition-group name="slide-fade">
+                        <li class="list-group-item" key="Que_" @click="setExpandOrCollapseFollow(2)">
+                          <p
+                            :style="expandedFollow[2] ? 'margin: 0px;' : 'display: -webkit-box; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin: 0px;'">
+                            <strong>Question:&nbsp;</strong>{{sampledData[qindex]['fourQ'][selectedQ]['question']}}
+                          </p>
+                        </li>
+                        <li class="list-group-item" key="Ans_" @click="setExpandOrCollapseFollow(3)">
+                          <p
+                            :style="expandedFollow[3] ? 'margin: 0px;' : 'display: -webkit-box; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin: 0px;'">
+                            <strong>Reference Answer:&nbsp;</strong>{{sampledData[qindex]['fourQ'][selectedQ]['groundtruth']}}
+                          </p>
+                        </li>
+                      </transition-group>
+                    </ul>
+                    
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                  <div class="card-body" style="padding-top: 0.75rem; padding-bottom: 0.25rem;">
+                    <h5 class="card-title"><b>Answers from the selected LMs</b> (Click on answers below to show the full text)<br><br></h5> 
+                    <!-- <h6 style="color: darkblue;"> Click on answers below to show the full text! </h6> -->
+                    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                  <!-- </div> <br>
+                  <div class="row" style="margin-top: 10px;">
+                    <div class="col-3" v-for="(lm, index) in lmlist" :key="index" style="margin-bottom: 5px;">
+                      <button type="button"
+                        :class="{btn: true, 'btn-secondary': selected[index], 'btn-light': !selected[index]}"
+                        @click="selectcat(index)" style="width: 80%;">{{lm}}</button>
+                    </div>
+                    <div class="col-3" style="margin-bottom: 5px;">
+                      <button type="button"
+                        :class="{btn: true, 'btn-secondary': !selected.includes(false), 'btn-light': selected.includes(false)}"
+                        @click="selectcat(-1)" style="width: 80%;">Show All</button>
+                    </div>
+                  </div> -->
+                </div> <br>
+                  <div class="row justify-content-center" style="margin-top: 10px;">
+                    <div class="col-2" v-for="(lm, index) in lmlist" :key="index" style="margin-bottom: 5px;">
+                        <button type="button"
+                            :class="{btn: true, 'btn-secondary': selected[index], 'btn-light': !selected[index]}"
+                            @click="selectcat(index)" style="width: 90%;">{{lm}}</button>
+                    </div>
+                    <div class="col-2" style="margin-bottom: 5px;">
+                        <button type="button"
+                            :class="{btn: true, 'btn-secondary': !selected.includes(false), 'btn-light': selected.includes(false)}"
+                            @click="selectcat(-1)" style="width: 90%;">Show All</button>
+                    </div>
+                </div>
+                
+                
+                  <!-- <div class="card" style="margin-top: 20px;"> -->
+                    <ul class="list-group list-group-flush" style="margin-top: 20px;">
+                      <transition-group name="slide-fade">
+                        <template v-for="(lm, index) in lmlist" :key="'group' + index">
+                          <li class="list-group-item group-item" v-show="selected[index]" :key="'ans' + index" @click="setExpandOrCollapse(index)">
+                            <p :style="expanded[index] ? 'margin: 0px;' : 'display: -webkit-box; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin: 0px;'">
+                              <strong>{{lm}}:&nbsp;</strong>
+                              {{ questiondata[index].text }}
+                            </p>
+                          </li>
+                          <li class="list-group-item group-item" v-show="selected[index]" :key="'eval' + index" @click="setExpandOrCollapse(index)">
+                            <p :style="expanded[index] ? 'margin: 0px; margin-top: 5px;' : 'display: -webkit-box; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin: 0px; margin-top: 5px;'">
+                              <strong>Eval:</strong>&nbsp;
+                              <span v-html="generateProgressBar(questiondata[index].data)"></span><br>
+                              {{ questiondata[index].eval_text }}
+                            </p>
+                          </li>
+                        </template>
+                      </transition-group>
+                    </ul>
+                                 <!-- </div> -->
+
+                </div>
+              
+              </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </template>
+
+
+</body>
+<script>
+  var overview = {
+    template: '#Overview'
+  };
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      nowname: 'overview'
+    },
+    components: {
+      overview
+    }
+  });
+</script>
+</html>
